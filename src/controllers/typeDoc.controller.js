@@ -20,11 +20,11 @@ export const getTypeDocById = async (req, res) => {
         const user = await getUserById(req.user.id)
         const hasPerm = await hasPermission(user.rol_ID, [ 1 ]);
         
-        if(!hasPerm.permission){
-            return res.status(403).json({ message : hasPerm.message });
-        }
+        if(!hasPerm.permission) return res.status(403).json({ message : hasPerm.message });
+        
 
         const typeDoc = await typeDocModel.getTypeDocById(req.params.id);
+        if (!typeDoc) return res.status(404).json({ message : "Tipo de documento no encontrado" });
         res.status(200).json(typeDoc)
     
 
@@ -41,10 +41,12 @@ export const createTypeDoc = async (req, res) => {
         const user = await getUserById(req.user.id)
         const hasPerm = await hasPermission(user.rol_ID, [ 1 ]);
         
-        if(!hasPerm.permission){
-            return res.status(403).json({ message : hasPerm.message });
-        }
-    
+        if(!hasPerm.permission) return res.status(403).json({ message : hasPerm.message });
+
+        const { typeDoc } = req.body;   
+        await typeDocModel.createTypeDoc(typeDoc);
+        res.status(200).json({ message : "Tipo de documento creado con exito" });
+        
 
     } catch (err) {
         res.status(500).json({ message : err.message })

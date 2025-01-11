@@ -1,4 +1,4 @@
-import * as carServiceModel from '../models/car_service.model.js';
+import * as carServiceModel from '../models/carService.model.js';
 import { hasPermission } from "../middlewares/authMiddleware.js";
 import { getUserById } from "../models/auth.model.js";
 import { getCar } from '../models/car.model.js';

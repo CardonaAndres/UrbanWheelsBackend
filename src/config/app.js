@@ -11,7 +11,7 @@ import carRoutes from '../routes/car.routes.js';
 import typeDocRouter from '../routes/typeDocs.routes.js';
 import statesRoutes from '../routes/states.routes.js';
 import servicesRoutes from '../routes/services.routes.js'
-import carServiceRouter from '../routes/car_service.routes.js'
+import carServiceRouter from '../routes/carService.routes.js'
 import { fileURLToPath } from 'url';
 import { authMiddleware } from '../middlewares/authMiddleware.js';
 import { CLIENT_ORIGIN } from './config.js';
@@ -34,16 +34,16 @@ app.use(cors({
 
 app.use(morgan('dev'));
 
-app.use('/api/auth', authRoutes);
-app.use('/api/docs', typeDocRouter);
+app.use('/API/auth', authRoutes);
+app.use('/API/docs', typeDocRouter);
 
-app.use('/api/users', authMiddleware, userRoutes);
-app.use('/api/carTypes', authMiddleware, carTypeRoutes);
-app.use('/api/brands', authMiddleware, brandRoutes);
-app.use('/api/states', authMiddleware, statesRoutes);
-app.use('/api/cars', authMiddleware, carRoutes);
-app.use('/api/services', authMiddleware, servicesRoutes);
-app.use('/api/carServices', authMiddleware, carServiceRouter);
+app.use('/API/users', authMiddleware, userRoutes);
+app.use('/API/carTypes', authMiddleware, carTypeRoutes);
+app.use('/API/brands', authMiddleware, brandRoutes);
+app.use('/API/states', authMiddleware, statesRoutes);
+app.use('/API/cars', authMiddleware, carRoutes);
+app.use('/API/services', authMiddleware, servicesRoutes);
+app.use('/API/carServices', authMiddleware, carServiceRouter);
 
 
 export default app;
